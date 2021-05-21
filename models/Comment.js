@@ -4,10 +4,16 @@ const Comment = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    trim: true,
   },
   comment: {
     type: String,
     required: true,
+    trim: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
 });
 
