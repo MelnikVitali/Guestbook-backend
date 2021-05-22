@@ -7,7 +7,7 @@ export const validateCreatComment = (req, res, next) => {
     name: Joi.string()
       .required()
       .min(3)
-      .max(450)
+      .max(60)
       .trim()
       .regex(/^[A-Za-z0-9_]+$/) //contain a-z, A-Z, 0-9, and underscore
       .messages({
@@ -17,7 +17,7 @@ export const validateCreatComment = (req, res, next) => {
         "string.pattern.base": `"name" should only contain a-z, A-Z, 0-9, and underscore _`,
         "any.required": `"name" is a required`,
       }),
-    comment: Joi.string().min(3).max(450).required().messages({
+    comment: Joi.string().min(2).max(450).required().messages({
       "string.base": `"comment" should be a type of 'text'`,
       "string.min": `"comment" should have a minimum length of {#limit}`,
       "string.empty": `"comment" cannot be an empty field`,
