@@ -13,24 +13,11 @@ Technologies used:
 - mongoose
 - express
 - express-rate-limit
-- jsonwebtoken
-- bcrypt
-- node-fetch
-- multer
-- sharp
-- nodemailer
-- passport
-- uuid
-- passport
-- passport-jwt
-- google-auth-library
-- validator
-- fs
+- joi
+- dotenv
 - body-parser
-- cookie-parser
 - cors
 - dotenv
-
 
 To run a project:
 -----------------
