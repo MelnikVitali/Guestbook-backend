@@ -22,10 +22,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(mongoSanitize()); //  Prevent NoSQL injections
 app.use(helmet()); //Security Headers
 app.use(xss()); //XSS Protection
+
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins
   max: 1000, // No of Requests
 });
+
 app.use(limiter); //Rate Limiting
 app.use(hpp()); //HTTP Parameter Pollution (HPP)
 
@@ -46,7 +48,7 @@ const startApp = async () => {
       console.log(`SERVER RUNNING ON PORT=${PORT}`, new Date());
     });
   } catch (e) {
-    console.log(e);
+    console.log('Start App Error', e);
   }
 };
 

@@ -1,13 +1,15 @@
 import CommentService from "../services/CommentService.js";
 
+import { HttpCodes } from '../constants/httpCodes.js';
+
 class CommentController {
   async create(req, res) {
     try {
       const comment = await CommentService.create(req.body);
 
-      return res.status(201).json(comment);
+      return res.status(HttpCodes.CREATED).json(comment);
     } catch (err) {
-      return res.status(500).json(err);
+      return res.status(HttpCodes.INTERNAL_SERVER_ERROR).json(err);
     }
   }
 
@@ -15,9 +17,9 @@ class CommentController {
     try {
       const comments = await CommentService.getAll();
 
-      return res.status(200).json(comments);
+      return res.status(HttpCodes.OK).json(comments);
     } catch (err) {
-      return res.status(500).json(err);
+      return res.status(HttpCodes.INTERNAL_SERVER_ERROR).json(err);
     }
   }
 
@@ -27,7 +29,7 @@ class CommentController {
 
       return res.json(comment);
     } catch (err) {
-      return res.status(500).json(err.message);
+      return res.status(HttpCodes.INTERNAL_SERVER_ERROR).json(err.message);
     }
   }
 
@@ -35,9 +37,9 @@ class CommentController {
     try {
       const updatedComment = await CommentService.update(req.body);
 
-      return res.status(200).json(updatedComment);
+      return res.status(HttpCodes.OK).json(updatedComment);
     } catch (err) {
-      return res.status(500).json(err.message);
+      return res.status(HttpCodes.INTERNAL_SERVER_ERROR).json(err.message);
     }
   }
 
@@ -45,9 +47,9 @@ class CommentController {
     try {
       const comments = await CommentService.delete(req.params.id);
 
-      return res.status(200).json(comments);
+      return res.status(HttpCodes.OK).json(comments);
     } catch (err) {
-      return res.status(500).json(err.message);
+      return res.status(HttpCodes.INTERNAL_SERVER_ERROR).json(err.message);
     }
   }
 }

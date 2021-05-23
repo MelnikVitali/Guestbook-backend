@@ -1,29 +1,27 @@
 import Comment from '../models/Comment.js';
+import NotFoundError from '../errors/notFoundError.js';
+import NoIIdSpecifiedError from '../errors/noIIdSpecifiedError.js';
 
 class CommentService {
     async create(comment) {
-        const createdPost = await Comment.create(comment);
-
-        return createdPost;
+        return Comment.create(comment);
     }
 
     async getAll() {
-        const comments = await Comment
+        return Comment
             .find()
             .sort({date: -1});
-
-        return comments;
     }
 
     async getOne(id) {
         if (!id) {
-            throw new Error('No ID specified');
+            throw new NoIIdSpecifiedError();
         }
 
         const comment = await Comment.findById(id);
 
         if(!comment){
-            throw new Error('Comment not found')
+            throw new NotFoundError('Comment');
         }
 
         return comment;
@@ -31,7 +29,7 @@ class CommentService {
 
     async update(comment) {
         if (!comment._id) {
-            throw new Error('No ID specified');
+            throw new NoIIdSpecifiedError();
         }
 
         const updatedComment = await Comment.findByIdAndUpdate(
@@ -41,7 +39,7 @@ class CommentService {
         );
 
         if(!updatedComment){
-            throw new Error('Comment not found')
+            throw new NotFoundError('Comment');
         }
 
         return updatedComment;
@@ -49,13 +47,13 @@ class CommentService {
 
     async delete(id) {
         if (!id) {
-            throw new Error('No ID specified');
+            throw new NoIIdSpecifiedError();
         }
 
         const comment = await Comment.findByIdAndDelete(id);
 
         if(!comment){
-            throw new Error('Comment not found')
+            throw new NotFoundError('Comment');
         }
 
         return comment;

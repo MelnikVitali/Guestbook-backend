@@ -7,7 +7,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MelnikVitali/pharm-backend.git"
+    "url": "git+https://github.com/MelnikVitali/Guestbook-backend.git"
   },
   "type": "module",
   "main": "server.js",
