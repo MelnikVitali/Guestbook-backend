@@ -20,7 +20,11 @@ class CommentService {
             throw new Error('No ID specified');
         }
 
-        const comment = Comment.findById(id);
+        const comment = await Comment.findById(id);
+
+        if(!comment){
+            throw new Error('Comment not found')
+        }
 
         return comment;
     }
@@ -36,6 +40,10 @@ class CommentService {
             {new: true}
         );
 
+        if(!updatedComment){
+            throw new Error('Comment not found')
+        }
+
         return updatedComment;
     }
 
@@ -45,6 +53,10 @@ class CommentService {
         }
 
         const comment = await Comment.findByIdAndDelete(id);
+
+        if(!comment){
+            throw new Error('Comment not found')
+        }
 
         return comment;
     }
