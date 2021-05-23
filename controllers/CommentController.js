@@ -27,7 +27,7 @@ class CommentController {
 
       return res.json(comment);
     } catch (err) {
-      return res.status(500).json(err);
+      return res.status(500).json(err.message);
     }
   }
 
@@ -47,7 +47,7 @@ class CommentController {
 
       return res.status(200).json(comments);
     } catch (err) {
-      return res.status(500).json(err);
+      return res.status(500).json(err.message);
     }
   }
 }
