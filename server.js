@@ -8,6 +8,8 @@ import helmet from "helmet";
 import xss from "xss-clean";
 import rateLimit from "express-rate-limit";
 import hpp from "hpp";
+import path from "path";
+import { fileURLToPath } from 'url';
 
 import router from "./router.js";
 
@@ -22,6 +24,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(mongoSanitize()); //  Prevent NoSQL injections
 app.use(helmet()); //Security Headers
 app.use(xss()); //XSS Protection
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: path.join(__dirname, 'public') });
+});
 
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins

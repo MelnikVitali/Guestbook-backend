@@ -20,7 +20,7 @@ class CommentService {
 
         const comment = await Comment.findById(id);
 
-        if(!comment){
+        if (!comment) {
             throw new NotFoundError('Comment');
         }
 
@@ -38,7 +38,7 @@ class CommentService {
             {new: true}
         );
 
-        if(!updatedComment){
+        if (!updatedComment) {
             throw new NotFoundError('Comment');
         }
 
@@ -52,7 +52,7 @@ class CommentService {
 
         const comment = await Comment.findByIdAndDelete(id);
 
-        if(!comment){
+        if (!comment) {
             throw new NotFoundError('Comment');
         }
 
